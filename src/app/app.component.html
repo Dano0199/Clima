@@ -1,0 +1,61 @@
+<div class="container">
+  
+  <div *ngIf = "!loaded">
+    <h3>Esperando datos</h3>
+  </div>
+  <br>
+  <div *ngIf = "loaded">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12">
+          <div class="datos text-center">
+            <h4><b>{{cityInfo.country_name}}</b></h4>
+            <h5>Region: <b>{{cityInfo.region_name}}</b></h5>
+            
+            <ng-template #popContent>
+              Latitud: <b>{{cityInfo.latitude}}</b>
+              Longitud: <b>{{cityInfo.longitude}}</b>
+            </ng-template>
+            <button 
+              class="btn btn-outline-secondary"
+              placement="bottom"
+              [ngbPopover]= "popContent"
+              popoverTitle= "Coordenadas"
+              container="body"
+              data-html="true">Ciudad: {{cityInfo.city}}
+            </button>
+
+            <app-clock class="mreloj"></app-clock>
+            <hr>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-12 col-sm-12 col-md-12">
+        <div class="card border rounded-5">
+          <h5 class="card-title text-center">Hoy: {{Fecha(climaNow.date)}}</h5>
+          <div class="row">
+            <div class="col-lg-6 col-sm-5 col-md-5 text-center">
+              <p>Maxima: {{climaNow.temp2m.max}}</p>
+              <p>Minima: {{climaNow.temp2m.min}}</p>
+            </div>
+            <div class="col-lg-6 col-sm-5 col-md-5">
+              <img class="imagen" src="{{Imagen(climaNow.weather)}}" width="80" height="80">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class= "row">
+        <div class="col-lg-6 col-sm-12 col-md-12" *ngFor = "let c of climaDay">
+          <div class="card border rounded-5 text-center">
+            <h5 class="card-title text-center">{{Fecha(c.date)}}</h5>
+            <img class="imagen" src="{{Imagen(c.weather)}}" width="80" height="80">
+            <p>Maxima: {{c.temp2m.max}}</p>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>

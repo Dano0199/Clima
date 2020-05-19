@@ -1,0 +1,16 @@
+.clock p {
+    color: #666;
+}
+
+.hours {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+span {
+    color: #777777;
+}
+
+.horas {
+    font-size: 25px;
+}
